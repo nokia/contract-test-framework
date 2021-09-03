@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "request" : {
+        "url": "{{config.protocol}}://{{config.host}}/test",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        "data": {
+            "value": "test"
+        }
+    },
+    "type": "object",
+    "required": ["checked", "id", "name", "price", "related_item", "tags"],
+    "properties": {
+    "checked": {
+        "type": "boolean"
+    },
+    "id": {
+        "type": "integer"
+    },
+    "name": {
+        "type": "string"
+    },
+    "price": {
+        "type": "number"
+    },
+    "tags": {
+        "type": "array",
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "related_item": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "price": {
+                "type": "number"
+            }
+        },
+        "required": [
+            "name",
+            "price"
+        ]
+    }
+}
+}

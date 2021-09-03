@@ -1,0 +1,9 @@
+# Copyright 2021 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
+protocol: http
+host: localhost
+default_headers:
+  Content-Type: application/json
+  Accept: application/json
