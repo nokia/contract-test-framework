@@ -11,8 +11,6 @@ jobs:
       - name: Set up Python
       - uses: actions/setup-python@v2
       - name: Install tox
-        run: |
-          python -m pip install tox
+        run: python -m pip install tox
       -name: Run Tests with Tox
-        run: |
-          tox
+        run: tox

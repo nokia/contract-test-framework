@@ -12,7 +12,7 @@ CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 def test_validation(script_runner,
                     mocked_request):  # pylint: disable=unused-argument
     contract_dir = os.path.join(CURRENT_DIR, 'contracts/')
-    ret = script_runner.run('contractor', 'validation', contract_dir)
+    ret = script_runner.run('fellowship', 'validation', contract_dir)
     assert ret.success
     assert 'example_contract.json Successfully validated' in ret.stdout
     assert ret.stderr == ''
@@ -22,7 +22,7 @@ def test_generation(script_runner,
                     request_dict,
                     json_response,
                     tmpdir):
-    ret = script_runner.run('contractor',
+    ret = script_runner.run('fellowship',
                             'generation',
                             os.path.join(tmpdir, 'test.json'),
                             json.dumps(request_dict),
