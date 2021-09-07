@@ -7,20 +7,14 @@ from setuptools import setup
 
 
 CURRENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-VERSION_FILE = os.path.join(CURRENT_DIR, 'fellowship', 'version.py')
-
-
-def get_version():
-    with open(VERSION_FILE) as ver:
-        return ver.read().split('=')[1].strip().strip("'")
+VERSION_FILE = os.path.join(CURRENT_DIR, 'fellowship', '_version.py')
+with open(VERSION_FILE) as ver:
+    __version__ = ver.read().split('=')[1].strip().strip("'")
 
 
 def read(fname):
     with open(os.path.join(os.path.dirname(__file__), fname)) as f:
         return f.read()
-
-
-__version__ = get_version()
 
 
 setup(name='fellowship',
@@ -31,7 +25,6 @@ setup(name='fellowship',
                         'attrs',
                         'genson',
                         'jsonschema',
-                        'pyenchant',
                         'pyyaml',
                         'rfc3987'],
       entry_points={

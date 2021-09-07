@@ -52,14 +52,6 @@ fellowship.utilis module
    :undoc-members:
    :show-inheritance:
 
-fellowship.version module
--------------------------
-
-.. automodule:: fellowship.version
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 

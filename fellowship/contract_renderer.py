@@ -14,6 +14,8 @@ from .contract import Contract
 
 class ContractRenderer:
 
+    config = load_config()
+
     def __init__(self, template_directory: str) -> None:
         """Renders the json contract based on jinja2 template.
         Attributes:
@@ -21,7 +23,6 @@ class ContractRenderer:
             jinja_env (object): Jinja environement used for rendering contracts
             jinja_env.filters['jsonify']: filter to automatically json dump to contract
         """
-        self.config = load_config()
         self.jinja_env = Environment(loader=FileSystemLoader(template_directory))
         self.jinja_env.filters['jsonify'] = json.dumps
 
