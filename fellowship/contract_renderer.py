@@ -1,3 +1,7 @@
+# Copyright 2021 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
 import json
 import glob
 import os
@@ -11,6 +15,12 @@ from .contract import Contract
 class ContractRenderer:
 
     def __init__(self, template_directory: str) -> None:
+        """Renders the json contract based on jinja2 template.
+        Attributes:
+            config (dict): Dcitonary of configurations such as url and header
+            jinja_env (object): Jinja environement used for rendering contracts
+            jinja_env.filters['jsonify']: filter to automatically json dump to contract
+        """
         self.config = load_config()
         self.jinja_env = Environment(loader=FileSystemLoader(template_directory))
         self.jinja_env.filters['jsonify'] = json.dumps
@@ -28,8 +38,8 @@ class ContractRenderer:
         return contract_dict
 
     def get_contracts(self, contract_dir: str) -> list:
-        """Finds all contracts in directory, the contracts are also rendered and
-            validated
+        """Finds all contracts in directory, the contracts are also rendered and \
+           validated
         Args:
             contract_dir: The path to the directory where the contracts are located
         Returns:

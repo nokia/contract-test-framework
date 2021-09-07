@@ -5,14 +5,16 @@
 import json
 import os
 
+import pytest
+
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
-def test_validation(script_runner,
-                    mocked_request):  # pylint: disable=unused-argument
+@pytest.mark.usefixtures("mocked_request")
+def test_validation(script_runner):
     contract_dir = os.path.join(CURRENT_DIR, 'contracts/')
-    ret = script_runner.run('fellowship', 'validation', contract_dir)
+    ret = script_runner.run('fellowship', 'validate', contract_dir)
     assert ret.success
     assert 'example_contract.json Successfully validated' in ret.stdout
     assert ret.stderr == ''
@@ -23,7 +25,7 @@ def test_generation(script_runner,
                     json_response,
                     tmpdir):
     ret = script_runner.run('fellowship',
-                            'generation',
+                            'generate',
                             os.path.join(tmpdir, 'test.json'),
                             json.dumps(request_dict),
                             json.dumps(json_response))

@@ -2,7 +2,6 @@
 # Licensed under the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging
 import os
 import pytest
 import requests_mock
@@ -13,33 +12,22 @@ from fellowship.contract_generator import ContractGenerator
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
-def pytest_configure(config):  # pylint: disable=unused-argument
-    logging.basicConfig(
-        format=" %(asctime)s.%(msecs)03d "
-               "%(levelname)s %(message)s",
-        level=logging.DEBUG)
-    logging.getLogger("flake8").setLevel(logging.WARN)
-
-
 @pytest.fixture
 def contract_tester():
     contract_dir = os.path.join(CURRENT_DIR, "contracts")
-    c = RestTester(contract_dir)
-    return c
+    return RestTester(contract_dir)
 
 
 @pytest.fixture
 def contract_tester_invalid():
     contract_dir = os.path.join(CURRENT_DIR, "invalid_contracts")
-    c = RestTester(contract_dir)
-    return c
+    return RestTester(contract_dir)
 
 
 @pytest.fixture
 def contract_generator(tmpdir):
     path = os.path.join(tmpdir, "test_contract.json")
-    c = ContractGenerator(path)
-    return c
+    return ContractGenerator(path)
 
 
 @pytest.fixture(name="json_response")

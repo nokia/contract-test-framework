@@ -5,7 +5,7 @@
 import attr
 
 
-@attr.s
+@attr.s(frozen=True)
 class Contract:
     """ Class to save contracts title and content
     Attributes:

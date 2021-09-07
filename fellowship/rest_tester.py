@@ -58,7 +58,3 @@ class RestTester:
             self._reporter.print_report_results(contract.title)
         except ValidationError as e:
             self._reporter.print_report_results(contract.title, e)
-
-
-class RestTesterException(ValidationError):
-    """Base class for Rest Tester specific errors"""

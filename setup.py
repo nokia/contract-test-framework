@@ -3,16 +3,21 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import os
-from setuptools import Command, setup
+from setuptools import setup
 
 
-THISDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-VERSION_FILE = os.path.join(THISDIR, 'fellowship', 'version.py')
+CURRENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+VERSION_FILE = os.path.join(CURRENT_DIR, 'fellowship', 'version.py')
 
 
 def get_version():
     with open(VERSION_FILE) as ver:
         return ver.read().split('=')[1].strip().strip("'")
+
+
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
 
 
 __version__ = get_version()
@@ -22,6 +27,13 @@ setup(name='fellowship',
       version=__version__,
       description='Library for testing api endpoints ',
       packages=['fellowship'],
+      install_requires=['Jinja2',
+                        'attrs',
+                        'genson',
+                        'jsonschema',
+                        'pyenchant',
+                        'pyyaml',
+                        'rfc3987'],
       entry_points={
         'console_scripts': ['fellowship=fellowship.cli:run'],
       },
@@ -30,4 +42,15 @@ setup(name='fellowship',
       },
       author='Robin Nyman',
       author_email='robin.nyman@nokia.com',
-      zip_safe=False)
+      license='BSD-3-Clause',
+      long_description=read('README.rst'),
+      url='https://github.com/nokia/contract-test-framework',
+      classifiers=['Intended Audience :: Developers',
+                   'License :: OSI Approved :: BSD License',
+                   'Operating System :: OS Independent',
+                   'Programming Language :: Python :: 3',
+                   'Programming Language :: Python :: 3.7',
+                   'Programming Language :: Python :: 3.8',
+                   'Programming Language :: Python :: 3.9',
+                   'Topic :: Software Testing'],
+      keywords="Microservice Contract Testing")

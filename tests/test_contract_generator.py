@@ -14,7 +14,7 @@ CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 @pytest.fixture(name="args")
 def fixture_args(request_dict, json_response, tmpdir):
     path = os.path.join(tmpdir, "test_contract.json")
-    parser = parse_args(["generation",
+    parser = parse_args(["generate",
                          path,
                          json.dumps(request_dict),
                          json.dumps(json_response)])

@@ -12,13 +12,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'Fellowship'
-copyright = '2021, Robin Nyman'
+copyright = '2021, Nokia'
 author = 'Robin Nyman'
 
 
@@ -30,7 +29,9 @@ author = 'Robin Nyman'
 extensions = [
     "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon"
+    "sphinxcontrib.spelling",
+    "sphinx.ext.napoleon",
+    "sphinx_autodoc_typehints"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -53,3 +54,9 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# -- Options for sphinxcontrib-spelling -----------------------------------
+spelling_word_list_filename = ["spelling_wordlist.txt"]
+
+
+set_type_checking_flag = True

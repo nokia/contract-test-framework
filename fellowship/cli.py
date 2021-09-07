@@ -9,26 +9,16 @@ from .contract_generator import ContractGenerator
 from .rest_tester import RestTester
 
 
-def validation(args):
-    rest_tester = RestTester(args.path)
-    rest_tester.make_requests_and_validates()
-
-
-def generation(args):
-    contract_generator = ContractGenerator(args.path)
-    contract_generator.generate_and_save_contract(args)
-
-
 def parse_args(args):
     parser = argparse.ArgumentParser(description='Contract tester based on json schema')
     subparsers = parser.add_subparsers()
-    parser_validation = subparsers.add_parser('validation')
+    parser_validation = subparsers.add_parser('validate')
     parser_validation.add_argument('path',
                                    type=str,
                                    help='The path to contract directory')
-    parser_validation.set_defaults(func=validation)
+    parser_validation.set_defaults(func=validate)
 
-    parser_generation = subparsers.add_parser('generation')
+    parser_generation = subparsers.add_parser('generate')
     parser_generation.add_argument('path',
                                    type=str,
                                    help='The path to were the new contract will '
@@ -47,14 +37,20 @@ def parse_args(args):
              'the values of the fields will not matter. Since the '
              'contract will by default only validate the existence and '
              'type of the fields')
-    parser_generation.set_defaults(func=generation)
+    parser_generation.set_defaults(func=generate)
     return parser.parse_args(args)
+
+
+def validate(args):
+    rest_tester = RestTester(args.path)
+    rest_tester.make_requests_and_validates()
+
+
+def generate(args):
+    contract_generator = ContractGenerator(args.path)
+    contract_generator.generate_and_save_contract(args)
 
 
 def run():
     args = parse_args(sys.argv[1:])
     args.func(args)
-
-
-if __name__ == "__main__":
-    run()

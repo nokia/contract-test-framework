@@ -2,7 +2,7 @@
     "request":{
         "url":"http://localhost/test",
         "method":"POST",
-        "header": {{config.default_headers|jsonify}},
+        "header": {{ config.default_headers|jsonify }},
         "data":{
             "value":"test"
         }

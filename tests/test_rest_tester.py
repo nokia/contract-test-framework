@@ -5,8 +5,8 @@
 import pytest
 
 
-def test_contracts(mocked_request,  # pylint: disable=unused-argument
-                   contract_tester,
+@pytest.mark.usefixtures("mocked_request")
+def test_contracts(contract_tester,
                    capsys):
     contract_tester.make_requests_and_validates()
     out, _ = capsys.readouterr()
@@ -14,8 +14,8 @@ def test_contracts(mocked_request,  # pylint: disable=unused-argument
     assert_message_in_stdout(expected_message, out)
 
 
-def test_invalid_contracts(mocked_request,  # pylint: disable=unused-argument
-                           contract_tester_invalid,
+@pytest.mark.usefixtures("mocked_request")
+def test_invalid_contracts(contract_tester_invalid,
                            capsys):
 
     with pytest.raises(SystemExit) as exception:

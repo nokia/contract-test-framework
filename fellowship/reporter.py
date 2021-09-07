@@ -26,7 +26,7 @@ class Reporter:
 
         Yields:
             Reporter: an instance of the reporter which can be used to print the result
-                of testcases
+                of test cases
 
         Examples should be written in doctest format, and should illustrate how
         to use the function.

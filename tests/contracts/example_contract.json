@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/schema#",
     "request" : {
-        "url": "{{config.protocol}}://{{config.host}}/test",
+        "url": "{{ config.protocol }}://{{ config.host }}/test",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json",

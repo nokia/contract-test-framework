@@ -30,8 +30,8 @@ class ContractGenerator:
         """ Function that generates a new contract and saves it to specified location
 
         Args:
-            cli_args (argparse.Namespace): argparser object that contains the following
-                arguments request_kwargs amd expected_json
+            cli_args (object): argparser object that contains the following
+                arguments request_kwargs and expected_json
         """
         contract_json = self._generate_contract(cli_args)
         self._save_contract(contract_json)
@@ -62,14 +62,14 @@ class ContractGenerator:
 
     @staticmethod
     def _add_default_headers(request_kwargs):
-        request_kwargs['headers'] = "{{config.default_headers}}"
+        request_kwargs['headers'] = "{{ config.default_headers }}"
 
     @staticmethod
     def _add_protocol_and_host(request_kwargs):
         uri = urlparse(request_kwargs['url'])
         print(uri)
         if not uri.netloc:
-            request_kwargs['url'] = "{{config.host}}" + request_kwargs['url']
+            request_kwargs['url'] = "{{ config.host }}" + request_kwargs['url']
         if not uri.scheme:
-            request_kwargs['url'] = "{{config.protocol}}://" + request_kwargs['url']
+            request_kwargs['url'] = "{{ config.protocol }}://" + request_kwargs['url']
         return request_kwargs

@@ -43,7 +43,7 @@ If you have ``tox`` installed (perhaps via ``pip install tox`` or your
 package manager), running ``tox`` in the directory of your source
 checkout will run ``contract-test-framework``'s test suite.
 
-Contributing
+CONTRIBUTING
 ------------
 
 To contribute to the project you can open a pull request related to one of the issues in project

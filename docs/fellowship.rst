@@ -1,61 +1,61 @@
-contractor package
+fellowship package
 ==================
 
 Submodules
 ----------
 
-contractor.cli module
+fellowship.cli module
 ---------------------
 
-.. automodule:: contractor.cli
+.. automodule:: fellowship.cli
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.contract module
+fellowship.contract module
 --------------------------
 
-.. automodule:: contractor.contract
+.. automodule:: fellowship.contract
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.contract\_generator module
+fellowship.contract\_generator module
 -------------------------------------
 
-.. automodule:: contractor.contract_generator
+.. automodule:: fellowship.contract_generator
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.reporter module
+fellowship.reporter module
 --------------------------
 
-.. automodule:: contractor.reporter
+.. automodule:: fellowship.reporter
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.rest\_tester module
+fellowship.rest\_tester module
 ------------------------------
 
-.. automodule:: contractor.rest_tester
+.. automodule:: fellowship.rest_tester
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.utilis module
+fellowship.utilis module
 ------------------------
 
-.. automodule:: contractor.utilis
+.. automodule:: fellowship.utilis
    :members:
    :undoc-members:
    :show-inheritance:
 
-contractor.version module
+fellowship.version module
 -------------------------
 
-.. automodule:: contractor.version
+.. automodule:: fellowship.version
    :members:
    :undoc-members:
    :show-inheritance:
@@ -63,7 +63,7 @@ contractor.version module
 Module contents
 ---------------
 
-.. automodule:: contractor
+.. automodule:: fellowship
    :members:
    :undoc-members:
    :show-inheritance:

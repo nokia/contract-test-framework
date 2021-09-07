@@ -23,9 +23,6 @@ def validate_contract(contract_dict: dict) -> None:
 
     Args:
         contract_dict (dict):
-    Raises:
-        ValidationError: If the validation of the contract based on the json meta schema
-            fails
     """
     validate(contract_dict, CUSTOM_JSON_SCHEMA)
 

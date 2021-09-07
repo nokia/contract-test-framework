@@ -1,7 +1,7 @@
-contractor
+fellowship
 ==========
 
 .. toctree::
    :maxdepth: 4
 
-   contractor
+   fellowship
