@@ -5,3 +5,12 @@ json
 submodules
 utilis
 rtype
+jinja
+config
+yaml
+consts
+enums
+gRPC
+github
+tox
+whitespace
