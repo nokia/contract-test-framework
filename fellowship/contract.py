@@ -8,6 +8,7 @@ import attr
 @attr.s(frozen=True)
 class Contract:
     """ Class to save contracts title and content
+
     Attributes:
         title (str): Title of the contract
         content (dict): Json contents of the contract

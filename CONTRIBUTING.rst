@@ -12,7 +12,7 @@ Getting Started
 -  Make sure you have a `GitHub account <https://github.com/join>`__.
 -  Submit a Github ticket for your issue if one does not already exist.
 
-   -  Clearly describe the issue including steps to reproduce if it is a
+   -  Clearly describe the issue, including steps to reproduce if it is a
       bug.
    -  Include information from your environment.
    -  Make sure you fill in the earliest version that you know has the
@@ -25,17 +25,17 @@ Making Changes
 
 -  Create a topic branch from master branch.
 
-   - | To quickly create a topic branch based on main, run ``git checkout -b fix/main/my_contribution``.
+   - | To quickly create a topic branch based on main, run ``git checkout -b my-contribution``.
      | Please avoid working directly on the ``main`` branch.
 -  Make commits of logical and atomic units.
 -  Check for unnecessary whitespace with ``git diff --check`` before committing.
 -  | Make sure your commit messages are in the proper format. Start commit message with the issue number in brackets e.g.
    | [#1] for issue number 1.
 -  Always run the tox tests before making a PR to ensure that the code follows quality and style requirements.
--  If the commit implements new functionality, makes sure to implement tests for this functionality as well.
+-  If the commit implements new functionality, make sure to implement tests for this functionality as well.
 -  See
    `ReadMe <https://https://github.com/nokia/contract-test-framework/blob/main/README.rst>`__
-   for details how to run the tests
+   for details on how to run the tests
 
 Submitting Changes
 ------------------

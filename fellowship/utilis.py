@@ -28,6 +28,16 @@ def validate_contract(contract_dict: dict) -> None:
 
 
 def load_config():
+    """Loads the configuration dictionary that is used to fill contracts
+
+    Function loads the config yaml, given at the path of environment variable
+    contract_test_config, if this variable is not present. It will load default config
+    from configs/rest_config.yaml
+
+    Returns:
+        dict: configuration dict
+
+    """
     try:
         config_path = os.environ['contract_test_config']
         return read_yaml(config_path)
@@ -38,5 +48,14 @@ def load_config():
 
 
 def read_yaml(path):
+    """Loads yaml at given path
+
+    Args:
+        path (str): path to yaml file
+
+    Returns:
+        dict: dict loaded from yaml
+
+    """
     with open(path, encoding="UTF-8") as yaml_file:
         return yaml.safe_load(yaml_file)

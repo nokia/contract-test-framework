@@ -8,32 +8,35 @@ contract-test-framework
 
 How to use from console:
 
-If you want to test contracts run in the console in validate mode. If your contracts follow the Jinja2 syntax make
-sure that the config.yaml path is given in environment variable ``contract_test_config``. You can see an example contracts
-and config at `example_contract.json <https://github.com/nokia/contract-test-framework/blob/main/tests/contracts/>`_.
-Request parts specifies the endpoint to make the request to and properties the json schema to validate against. These
-contracts will be validated against a meta-schema before the request is made.
+If you want to validate an REST API, run Fellowship in validate mode.
+If your contracts follow the Jinja2 syntax, make sure that you give the path to config.yaml
+in environment variable ``contract_test_config``. You can see examples of contracts and config at
+`example_contract.json <https://github.com/nokia/contract-test-framework/blob/main/tests/contracts/>`_.
+Request part of the contract specifies the endpoint to make the request to. While everything under properties defines
+the JSON schema to validate against.
+Fellowship validates these contracts against a meta-schema before it makes the request.
+Example of how to run from console:
 
 .. code-block:: bash
 
     $ fellowship validate path/to/contract_directory/
 
-To generate a contract in console run in generate mode, with the following syntax: fellowship generate path_of_the
+To generate a contract in console, run in generate mode, with the following syntax: fellowship generate path_of_the
 contract_to_generate request_kwargs expected_json. Request_kwargs is the request as a dictionary, the dictionary can take
 following parameters:
 
 
-    * | url: can be given as a full url, or just the endpoint (/api/v1/test) then it will be filled as
-      | {{ config.protocol }}://{{ config.host}}/api/v1/test, when in validating protocol and config will be filled
+    * | url: can be given as a full url, or just the endpoint (/api/v1/test) it will then fill out the Jinja 2 syntax for you
+      | {{ config.protocol }}://{{ config.host}}/api/v1/test, when validating protocol and config will be filled
       | from config.yaml
 
-    * | headers: can be given as a dictonary {"Accept": "application/json"}, if left empty it will automatically be filled as
-      | {{ config.default_headers | jsonify }}
+    * | headers: can be given as a dictonary {"Accept": "application/json"}, if left empty it will automatically fill as
+      | {{ config.default_headers | jsonify }}.
 
     * data: The body of the request
 
-The last expected argument is the expected json response from the Rest API, The contract will be generated with only types
-and required for all fields. If you want to validate the values also you need to manually add the consts and enums later.
+The last expected argument is the expected json response from the Rest API. The contract will generate with only types
+and required for all fields. If you want to validate the values, you need to fill the consts and enums manually.
 
 
 .. code-block:: bash
@@ -43,7 +46,7 @@ and required for all fields. If you want to validate the values also you need to
 Features
 --------
 
-REST endpoints contract testing and contract Rendering.
+REST endpoint contract testing and contract rendering.
 
 Future development plans includes to support gRPC and message-based communication
 

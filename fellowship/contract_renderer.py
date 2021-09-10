@@ -13,16 +13,16 @@ from .contract import Contract
 
 
 class ContractRenderer:
+    """Renders the json contract based on jinja2 template.
+    Attributes:
+        config (dict): Dcitonary of configurations such as url and header
+        jinja_env (object): Jinja environement used for rendering contracts
+        jinja_env.filters['jsonify']: filter to automatically json dump to contract
+    """
 
     config = load_config()
 
     def __init__(self, template_directory: str) -> None:
-        """Renders the json contract based on jinja2 template.
-        Attributes:
-            config (dict): Dcitonary of configurations such as url and header
-            jinja_env (object): Jinja environement used for rendering contracts
-            jinja_env.filters['jsonify']: filter to automatically json dump to contract
-        """
         self.jinja_env = Environment(loader=FileSystemLoader(template_directory))
         self.jinja_env.filters['jsonify'] = json.dumps
 

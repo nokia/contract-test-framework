@@ -16,7 +16,7 @@ def parse_args(args):
     parser_validation.add_argument('path',
                                    type=str,
                                    help='The path to contract directory')
-    parser_validation.set_defaults(func=validate)
+    parser_validation.set_defaults(func=_validate)
 
     parser_generation = subparsers.add_parser('generate')
     parser_generation.add_argument('path',
@@ -37,16 +37,16 @@ def parse_args(args):
              'the values of the fields will not matter. Since the '
              'contract will by default only validate the existence and '
              'type of the fields')
-    parser_generation.set_defaults(func=generate)
+    parser_generation.set_defaults(func=_generate)
     return parser.parse_args(args)
 
 
-def validate(args):
+def _validate(args):
     rest_tester = RestTester(args.path)
     rest_tester.make_requests_and_validates()
 
 
-def generate(args):
+def _generate(args):
     contract_generator = ContractGenerator(args.path)
     contract_generator.generate_and_save_contract(args)
 
