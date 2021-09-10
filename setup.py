@@ -45,5 +45,5 @@ setup(name='fellowship',
                    'Programming Language :: Python :: 3.7',
                    'Programming Language :: Python :: 3.8',
                    'Programming Language :: Python :: 3.9',
-                   'Topic :: Software Testing'],
+                   'Topic :: Software Development :: Testing'],
       keywords="Microservice Contract Testing")
