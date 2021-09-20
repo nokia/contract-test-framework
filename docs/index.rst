@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Fellowship's documentation!
+Getting Started with Fellowship
 ======================================
+
+Fellowship is a contract testing tool that currently supports REST APIs.
+Check readme for examples, how to use the command-line interface.
 
 .. toctree::
    :maxdepth: 2
@@ -13,6 +16,7 @@ Welcome to Fellowship's documentation!
    Readme <README>
    Contributing <CONTRIBUTING>
    modules
+   cli
 
 
 

@@ -1,0 +1,7 @@
+include tox.ini
+recursive-include tests/
+include .flake8
+include .coveragerc
+include .pylintrc
+include README.rst
+include LICENSE

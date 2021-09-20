@@ -2,7 +2,6 @@
 # Licensed under the BSD 3-Clause License.
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging
 import json
 import requests
 
@@ -10,9 +9,6 @@ from jsonschema import validate, ValidationError
 
 from .contract_renderer import ContractRenderer
 from .reporter import Reporter
-
-
-LOGGER = logging.getLogger(__name__)
 
 
 class RestTester:

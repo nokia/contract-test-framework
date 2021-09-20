@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import os
+
 import pytest
 import requests_mock
 from fellowship.rest_tester import RestTester

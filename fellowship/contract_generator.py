@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import json
+import logging
 import os
 from typing import TYPE_CHECKING
 from urllib.parse import urlparse
@@ -13,6 +14,9 @@ from .contract_renderer import ContractRenderer
 
 if TYPE_CHECKING:
     import argparse
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class ContractGenerator:
@@ -43,8 +47,8 @@ class ContractGenerator:
                             'properties': {}})
         response_json = {**cli_args.expected_json}
         builder.add_object(response_json)
-        print(f"The generated schema: \n{builder.to_json(indent=4)}"
-              f"\nSaved to file: {cli_args.path}")
+        LOGGER.info("The generated schema: %s \nSaved to file: %s",
+                    builder.to_json(indent=4), cli_args.path)
         return builder.to_schema()
 
     def _save_contract(self, contract_json):
@@ -67,7 +71,6 @@ class ContractGenerator:
     @staticmethod
     def _add_protocol_and_host(request_kwargs):
         uri = urlparse(request_kwargs['url'])
-        print(uri)
         if not uri.netloc:
             request_kwargs['url'] = "{{ config.host }}" + request_kwargs['url']
         if not uri.scheme:
