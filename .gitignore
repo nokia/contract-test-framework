@@ -10,3 +10,5 @@ fellowship.egg-info/*
 .idea/*
 .coverage
 htmlcov/*
+venv/*
+build/*
