@@ -5,15 +5,11 @@
 import json
 import logging
 import os
-from typing import TYPE_CHECKING
 from urllib.parse import urlparse
 
 from genson import SchemaBuilder
 
 from .contract_renderer import ContractRenderer
-
-if TYPE_CHECKING:
-    import argparse
 
 
 LOGGER = logging.getLogger(__name__)
@@ -30,25 +26,29 @@ class ContractGenerator:
         self.contract_path = output_path
         self.contract_renderer = ContractRenderer(os.path.dirname(output_path))
 
-    def generate_and_save_contract(self, cli_args: 'argparse.Namespace') -> None:
+    def generate_and_save_contract(self, request_kwargs: dict, expected_json: dict) \
+            -> None:
         """ Function that generates a new contract and saves it to specified location
 
         Args:
-            cli_args (object): argparser object that contains the following
-                arguments request_kwargs and expected_json
+            request_kwargs (dict): A dictionary that describes the request that should
+                return the expected_json. The dictionary needs to contain url (at least
+                endpoint) and method. Optional parameters include headers and data
+            expected_json (dict): Is the Json response that is expected when the request
+                from the request_kwargs dictionary is sent.
         """
-        contract_json = self._generate_contract(cli_args)
+        contract_json = self._generate_contract(request_kwargs, expected_json)
         self._save_contract(contract_json)
 
-    def _generate_contract(self, cli_args):
+    def _generate_contract(self, request_kwargs, expected_json):
         builder = SchemaBuilder()
-        self._check_request_kwargs(cli_args.request_kwargs)
-        builder.add_schema({'request': {**cli_args.request_kwargs},
+        self._check_request_kwargs(request_kwargs)
+        builder.add_schema({'request': {**request_kwargs},
                             'properties': {}})
-        response_json = {**cli_args.expected_json}
+        response_json = {**expected_json}
         builder.add_object(response_json)
         LOGGER.info("The generated schema: %s \nSaved to file: %s",
-                    builder.to_json(indent=4), cli_args.path)
+                    builder.to_json(indent=4), self.contract_path)
         return builder.to_schema()
 
     def _save_contract(self, contract_json):

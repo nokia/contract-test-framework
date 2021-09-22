@@ -5,4 +5,3 @@ Command line interface
    :maxdepth: 1
 
    cli_main
-   cli_subcommand

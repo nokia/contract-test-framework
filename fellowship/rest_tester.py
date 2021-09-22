@@ -12,6 +12,12 @@ from .reporter import Reporter
 
 
 class RestTester:
+    """Validates Rest endpoints based on contracts
+    Attributes:
+        contract_dir (str): Path to directory of contracts to validate
+        contract_renderer (object): Contract render module used to fill the Jinja2
+            template of the contracts.
+    """
     _requests_arg_names = ['headers', 'data', 'params']
 
     def __init__(self, contract_dir: str):
@@ -25,7 +31,6 @@ class RestTester:
         a request is made corresponding to the request portion in the contract.
         The response is validated against json schema portion of the contract.
         A report gets printed to the shell
-        :return: None
         """
         with Reporter().marginals() as self._reporter:
             contracts = self.contract_renderer.get_contracts(self.contract_dir)

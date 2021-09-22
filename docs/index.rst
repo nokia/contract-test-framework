@@ -4,10 +4,11 @@
    contain the root `toctree` directive.
 
 Getting Started with Fellowship
-======================================
+===============================
 
 Fellowship is a contract testing tool that currently supports REST APIs.
-Check readme for examples, how to use the command-line interface.
+Check readme for examples on how to use the command-line interface. Example
+Work Flow contains an example on how to run fellowship in a pre merge pipeline.
 
 .. toctree::
    :maxdepth: 2
@@ -15,8 +16,9 @@ Check readme for examples, how to use the command-line interface.
 
    Readme <README>
    Contributing <CONTRIBUTING>
-   modules
-   cli
+   Modules <modules>
+   Command Line Interface <cli>
+   Example Work Flow <workflow>
 
 
 

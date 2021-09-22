@@ -2,10 +2,6 @@ Fellowship command
 ***********************
 
 .. argparse::
-   :module: fellowship.cli
+   :module: fellowship._arg_parser
    :func: get_parser
    :prog: fellowship
-
-   subcommand
-        Here we add a reference to subcommand, to simplify navigation.
-        See :doc:`cli_subcommand`

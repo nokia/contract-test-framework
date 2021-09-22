@@ -16,8 +16,8 @@ class Reporter:
     """Reports test results of the contract testing.
 
     Attributes:
-        total_tests (int): The total amount of tests conducted
-        failed (list): A list of failed tests
+        total_tests (int): The total amount of tests conducted. Default value 0
+        failed (list): A list of failed tests. Default value empty list
     """
     def __init__(self) -> None:
         self.total_tests = 0
@@ -25,8 +25,10 @@ class Reporter:
 
     @contextmanager
     def marginals(self) -> Generator['Reporter', None, None]:
-        """ Generator that prints header, and generates a reporter instance which can be
-            used for printing. Footer is printed after reporter is closed
+        """ Generator that prints header/footer, and yields a reporter instance
+
+            The reporter instance can be used to print the report, with the function
+            print_report_results
 
         Yields:
             Reporter: an instance of the reporter which can be used to print the result
@@ -46,7 +48,7 @@ class Reporter:
         Args:
             contract_title (str): The title of the contract used for logging
             exception (Exception): Exception raised when validating contract. Defaults
-                to None when validation successful
+                to None when validation is successful
         """
         self.total_tests += 1
         if exception:

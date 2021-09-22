@@ -15,8 +15,8 @@ from .contract import Contract
 class ContractRenderer:
     """Renders the json contract based on jinja2 template.
     Attributes:
-        config (dict): Dcitonary of configurations such as url and header
-        jinja_env (object): Jinja environement used for rendering contracts
+        config (dict): Dictionary of configurations such as url and header
+        jinja_env (object): Jinja environment used for rendering contracts
         jinja_env.filters['jsonify']: filter to automatically json dump to contract
     """
 
@@ -31,7 +31,7 @@ class ContractRenderer:
         Args:
             fname (str): Name of the contract file to render and validate
         Returns:
-            dict: A json dictonary
+            dict: A json dictionary
         """
         jinja_template = self.jinja_env.get_template(os.path.basename(fname))
         contract_dict = json.loads(jinja_template.render(config=self.config))
