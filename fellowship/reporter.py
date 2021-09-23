@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import logging
-import sys
 from contextlib import contextmanager
 from datetime import datetime
 from typing import Generator
@@ -69,7 +68,6 @@ class Reporter:
                 LOGGER.error("Contract validation failed for: %s", contract)
             LOGGER.error("Total result: %d / %d", self.total_tests-len(self.failed),
                          self.total_tests)
-            sys.exit(1)
         else:
             LOGGER.info("All contracts passed :)")
         LOGGER.info("End of test run")

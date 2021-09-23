@@ -37,6 +37,7 @@ class RestTester:
             for contract in contracts:
                 json_response = self._make_request(contract.content)
                 self._validate(json_response, contract)
+            self._check_result()
 
     def _make_request(self, contract_json):
         request_kwargs = self._construct_request_kwargs(contract_json)
@@ -59,3 +60,12 @@ class RestTester:
             self._reporter.print_report_results(contract.title)
         except ValidationError as e:
             self._reporter.print_report_results(contract.title, e)
+
+    def _check_result(self):
+        if self._reporter.failed:
+            raise RestTesterException(f"Validation failed for following contracts: "
+                                      f"{self._reporter.failed}")
+
+
+class RestTesterException(Exception):
+    """Exception raised when contract validation fails"""

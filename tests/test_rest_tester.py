@@ -5,6 +5,8 @@
 import logging
 import pytest
 
+from fellowship.rest_tester import RestTesterException
+
 
 @pytest.mark.usefixtures("mocked_request")
 def test_contracts(contract_tester,
@@ -19,10 +21,10 @@ def test_contracts(contract_tester,
 def test_invalid_contracts(contract_tester_invalid,
                            caplog):
     caplog.set_level(logging.DEBUG)
-    with pytest.raises(SystemExit) as exception:
+    with pytest.raises(RestTesterException) as exception:
         contract_tester_invalid.make_requests_and_validates()
-    assert exception.type == SystemExit
-    assert exception.value.code == 1
+    assert "Validation failed for following contracts" in str(exception)
+
     not_existing_message = "failed with the following error" \
                            " 'not_existing' is a required property"
     assert_message_in_stdout(not_existing_message, caplog.text)
