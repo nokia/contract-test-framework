@@ -7,9 +7,6 @@
             "value":"test"
         }
     },
-    "default":{
-
-    },
     "properties":{
         "checked":{
             "type":"boolean",

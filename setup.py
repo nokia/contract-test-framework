@@ -28,7 +28,7 @@ setup(name='fellowship',
                         'pyyaml',
                         'rfc3987'],
       entry_points={
-        'console_scripts': ['fellowship=fellowship.cli:run'],
+          'console_scripts': ['fellowship=fellowship.cli:run'],
       },
       package_data={
           '': ['schemas/*', 'configs/*']

@@ -1,4 +1,4 @@
 [run]
 omit =
-  */version.py
+  */_version.py
   */conf.py

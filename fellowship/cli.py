@@ -8,7 +8,7 @@ import sys
 from ._arg_parser import get_parser
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 
 def parse_args(args):

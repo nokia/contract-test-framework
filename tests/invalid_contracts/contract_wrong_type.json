@@ -6,9 +6,6 @@
         "header": {
             "Content-Type": "application/json",
             "Accept": "application/json"
-        },
-        "data": {
-            "value": "test"
         }
     },
     "type": "object",

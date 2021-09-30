@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import logging
+
 import pytest
 
 from fellowship.rest_tester import RestTesterException
@@ -12,7 +13,9 @@ from fellowship.rest_tester import RestTesterException
 def test_contracts(contract_tester,
                    caplog):
     caplog.set_level(logging.DEBUG)
+
     contract_tester.make_requests_and_validates()
+
     expected_message = 'example_contract.json Successfully validated'
     assert_message_in_stdout(expected_message, caplog.text)
 

@@ -1,3 +1,7 @@
+# Copyright 2021 Nokia
+# Licensed under the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+
 import argparse
 import json
 
@@ -14,7 +18,8 @@ def get_parser():
                     'the contracts located in the directory passed by the path arg. '
                     'During execution, fellowship prints a report to the command '
                     'line displaying the result.  If the validation of any contract is '
-                    'invalid, fellowship raises system exit 1 at the end of the run. '
+                    'invalid, fellowship raises RestTesterException at the end of the '
+                    'run.'
     )
     parser_validation.add_argument('path',
                                    type=str,

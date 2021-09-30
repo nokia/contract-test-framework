@@ -14,5 +14,13 @@ def test_generation(contract_generator, request_dict, json_response, tmpdir):
     generated_json = os.path.join(tmpdir, "test_contract.json")
     expected_json = os.path.join(CURRENT_DIR, "contracts", "example_contract.json")
     with open(generated_json, encoding="UTF-8") as file1, \
-         open(expected_json, encoding="UTF-8") as file2:
+            open(expected_json, encoding="UTF-8") as file2:
         assert json.load(file1) == json.load(file2)
+
+
+def test_generation_without_rendering(contract_generator,
+                                      request_dict,
+                                      json_response):
+    request_dict["url"] = "http://localhost/test"
+    request_dict.pop("headers")
+    contract_generator.generate_and_save_contract(request_dict, json_response)

@@ -78,7 +78,7 @@ instead. In the enum field, you can give a list of all potential values and the
 validation ensures that the enum contains the value of the response.
 There are several other validators in Json Schema such as maximum, minimum refer
 to `JSON Schema Reference
-<https://github.com/nokia/contract-test-framework/blob/main/tests/contracts/>`_
+<https://json-schema.org/understanding-json-schema/reference/generic.html>`_
 for more information.
 
 6. Are all endpoints covered?

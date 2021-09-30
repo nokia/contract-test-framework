@@ -26,22 +26,22 @@ Example of how to run from console:
     $ fellowship validate path/to/contract_directory/
 
 To generate a contract in console, run in generate mode, with the following
-syntax: fellowship generate path_of_the contract_to_generate request_kwargs
+syntax:: fellowship generate path_of_the contract_to_generate request_kwargs
 expected_json.
 Request_kwargs is the request as a dictionary, the dictionary can take following
 parameters:
 
 
-    * | url: can be given as a full url, or just the endpoint (/api/v1/test)
+    * | **url**: can be given as a full url, or just the endpoint (/api/v1/test)
       | it will then fill out the Jinja 2 syntax for you
       | {{ config.protocol }}://{{ config.host}}/api/v1/test, when validating
       | protocol and config will be filled from config.yaml
 
-    * | headers: can be given as a dictonary {"Accept": "application/json"}, if
+    * | **headers**: can be given as a dictionary {"Accept": "application/json"}, if
       | left empty it will automatically fill as
       | {{ config.default_headers | jsonify }}.
 
-    * data: The body of the request
+    * **data**: The body of the request
 
 The last expected argument is the expected json response from the Rest API. The
 contract will generate with only types and required for all fields.
@@ -51,7 +51,7 @@ manually.
 
 .. code-block:: bash
 
-    $ fellowship generate sample.json '{"url": "/test", "method": "GET"}'
+    $ fellowship generate sample.json '{"url": "/test", "method": "GET"}' \
       '{"json": "expected_response"}'
 
 Features
