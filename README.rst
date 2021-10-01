@@ -88,5 +88,5 @@ See how to contribute in `CONTRIBUTING.rst
 The code and the issues are hosted on `GitHub
 <https://github.com/nokia/contract-test-framework>`_.
 
-The project is licensed under BSD-3-Clause `BSD-3-Clause
+The project is licensed under `BSD-3-Clause
 <https://github.com/nokia/contract-test-framework/blob/main/LICENSE>`_.
