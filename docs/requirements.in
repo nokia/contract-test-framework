@@ -1,0 +1,11 @@
+Jinja2
+attrs
+genson
+jsonschema
+PyYAML
+rfc3987
+Sphinx
+sphinx-argparse
+sphinx-autodoc-typehints
+sphinx-rtd-theme
+sphinxcontrib-spelling

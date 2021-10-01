@@ -1,0 +1,14 @@
+*.pyc
+*.swp
+*.swo
+*.swn
+*.swm
+dist/*
+fellowship.egg-info/*
+.tox/*
+.pytest_cache/
+.idea/*
+.coverage
+htmlcov/*
+venv/*
+build/*

@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "request" : {
+        "url": "http://localhost/test",
+        "method": "POST",
+        "header": {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    },
+    "type": "object",
+    "required": ["checked", "id", "name", "price", "related_item", "tags"],
+    "properties": {
+    "checked": {
+        "type": "boolean"
+    },
+    "id": {
+        "type": "string",
+        "NOTE": "THIS IS INTEGER NOT STRING!"
+    },
+    "name": {
+        "type": "string"
+    },
+    "price": {
+        "type": "number"
+    },
+    "tags": {
+        "type": "array",
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "related_item": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "price": {
+                "type": "number"
+            }
+        },
+        "required": [
+            "name",
+            "price"
+        ]
+    }
+}
+}

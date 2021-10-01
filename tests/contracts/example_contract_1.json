@@ -1,0 +1,61 @@
+{
+    "request":{
+        "url":"http://localhost/test",
+        "method":"POST",
+        "header": {{ config.default_headers|jsonify }},
+        "data":{
+            "value":"test"
+        }
+    },
+    "properties":{
+        "checked":{
+            "type":"boolean",
+            "title":"The Checked Schema",
+            "description":"An explanation about the purpose of this instance.",
+            "enum": [true, false]
+        },
+        "id":{
+            "type":"integer",
+            "title":"The Id Schema",
+            "description":"An explanation about the purpose of this instance.",
+            "default":0,
+            "const":1000,
+            "examples":[
+                1
+            ]
+        },
+        "name":{
+            "type":"string",
+            "title":"The Name Schema",
+            "description":"An explanation about the purpose of this instance.",
+            "default":"",
+            "examples":[
+                "A green door"
+            ],
+            "const": "T-Rex"
+        },
+        "price":{
+            "type":"number",
+            "title":"The Price Schema",
+            "description":"An explanation about the purpose of this instance.",
+            "const": 9.99
+        },
+        "tags":{
+            "type":"array",
+            "title":"The Tags Schema",
+            "description":"An explanation about the purpose of this instance.",
+            "items":{
+                "type":"array",
+                "title":"The Items Schema",
+                "description":"An explanation about the purpose of this instance.",
+                "const": ["pre-historic", "blue", "plushy"],
+                "items":{
+                    "type":"string",
+                    "title":"The Items Schema",
+                    "description":"An explanation about the purpose of this instance.",
+                    "enum": ["pre-historic", "blue", "plushy", "toy"]
+                }
+            }
+        }
+    }
+}
