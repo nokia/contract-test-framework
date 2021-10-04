@@ -3,7 +3,7 @@ name: Build and publish Fellowship to PyPI and TestPyPI
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-n-publish:
