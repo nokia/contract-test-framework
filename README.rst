@@ -64,7 +64,7 @@ Future development plans includes to support gRPC and message-based communicatio
 Installation
 ------------
 
-``fellowship`` will be made available on PyPI. You can install using
+``fellowship`` is available on PyPI. You can install using
 `pip <https://pip.pypa.io/en/stable/>`_:
 
 .. code-block:: bash
