@@ -91,5 +91,5 @@ The code and the issues are hosted on `GitHub
 The project is licensed under `BSD-3-Clause
 <https://github.com/nokia/contract-test-framework/blob/main/LICENSE>`_.
 
-The documentation is hosted on `read_the_docs
+The documentation is hosted on `read the docs
 <https://contract-test-framework.readthedocs.io/en/latest/?>`_
