@@ -5,6 +5,7 @@ genson
 jsonschema
 PyYAML
 rfc3987
+requests
 Sphinx
 sphinx-argparse
 sphinx-autodoc-typehints

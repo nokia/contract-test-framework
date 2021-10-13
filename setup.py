@@ -26,6 +26,7 @@ setup(name='fellowship',
                         'genson',
                         'jsonschema',
                         'pyyaml',
+                        'requests',
                         'rfc3987'],
       entry_points={
           'console_scripts': ['fellowship=fellowship.cli:run'],
