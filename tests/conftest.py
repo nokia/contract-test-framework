@@ -6,27 +6,42 @@ import os
 
 import pytest
 import requests_mock
-from fellowship.rest_tester import RestTester
+
 from fellowship.contract_generator import ContractGenerator
+from fellowship.grpc_generator import GrpcGenerator
+from fellowship.grpc_tester import GrpcTester
+from fellowship.rest_tester import RestTester
 
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
 @pytest.fixture
-def contract_tester():
+def grpc_contract_tester():
+    contract_dir = os.path.join(CURRENT_DIR, "contracts", "grpc")
+    return GrpcTester(contract_dir)
+
+
+@pytest.fixture
+def grpc_contract_generator(tmpdir):
+    proto_file = os.path.join(CURRENT_DIR, "contracts", "grpc", "protos", "test.proto")
+    return GrpcGenerator(proto_file)
+
+
+@pytest.fixture
+def rest_contract_tester():
     contract_dir = os.path.join(CURRENT_DIR, "contracts")
     return RestTester(contract_dir)
 
 
 @pytest.fixture
-def contract_tester_invalid():
+def rest_contract_tester_invalid():
     contract_dir = os.path.join(CURRENT_DIR, "invalid_contracts")
     return RestTester(contract_dir)
 
 
 @pytest.fixture
-def contract_generator(tmpdir):
+def rest_contract_generator(tmpdir):
     path = os.path.join(tmpdir, "test_contract.json")
     return ContractGenerator(path)
 

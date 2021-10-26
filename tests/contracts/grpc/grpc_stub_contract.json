@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "contract_type": "grpc",
+  "request" : {
+    "host": "127.0.0.1",
+    "port": "50051",
+    "method": "stub",
+    "proto_file": "protos/test.proto",
+    "package": "edge",
+    "endpoint": "Subscribe",
+    "function": "send",
+    "data": {
+      "value": "test"
+    }
+  },
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}

@@ -22,9 +22,10 @@ class ContractGenerator:
         contract_path (str): The path of file that will be generated
     """
 
-    def __init__(self, output_path: str) -> None:
+    def __init__(self, output_path: str, type_of_contract: str = "rest") -> None:
         self.contract_path = output_path
         self.contract_renderer = ContractRenderer(os.path.dirname(output_path))
+        self.type_of_contract = type_of_contract
 
     def generate_and_save_contract(self, request_kwargs: dict, expected_json: dict) \
             -> None:
@@ -42,8 +43,11 @@ class ContractGenerator:
 
     def _generate_contract(self, request_kwargs, expected_json):
         builder = SchemaBuilder()
-        self._check_request_kwargs(request_kwargs)
-        builder.add_schema({'request': {**request_kwargs},
+        print(self.type_of_contract.lower())
+        if self.type_of_contract.lower() == "rest":
+            self._check_request_kwargs(request_kwargs)
+        builder.add_schema({'contract_type': self.type_of_contract,
+                            'request': {**request_kwargs},
                             'properties': {}})
         response_json = {**expected_json}
         builder.add_object(response_json)

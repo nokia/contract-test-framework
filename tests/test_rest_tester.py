@@ -6,26 +6,26 @@ import logging
 
 import pytest
 
-from fellowship.rest_tester import RestTesterException
+from fellowship.endpoint_tester import EndpointTesterException
 
 
 @pytest.mark.usefixtures("mocked_request")
-def test_contracts(contract_tester,
+def test_contracts(rest_contract_tester,
                    caplog):
     caplog.set_level(logging.DEBUG)
 
-    contract_tester.make_requests_and_validates()
+    rest_contract_tester.make_requests_and_validates()
 
     expected_message = 'example_contract.json Successfully validated'
     assert_message_in_stdout(expected_message, caplog.text)
 
 
 @pytest.mark.usefixtures("mocked_request")
-def test_invalid_contracts(contract_tester_invalid,
+def test_invalid_contracts(rest_contract_tester_invalid,
                            caplog):
     caplog.set_level(logging.DEBUG)
-    with pytest.raises(RestTesterException) as exception:
-        contract_tester_invalid.make_requests_and_validates()
+    with pytest.raises(EndpointTesterException) as exception:
+        rest_contract_tester_invalid.make_requests_and_validates()
     assert "Validation failed for following contracts" in str(exception)
 
     not_existing_message = "failed with the following error" \
