@@ -5,9 +5,9 @@
     "host": "127.0.0.1",
     "port": "50051",
     "method": "reflection",
-    "package": "unsub",
-    "endpoint": "Unsubscribe",
-    "function": "send",
+    "package": "test",
+    "endpoint": "HelloWorld",
+    "function": "Send",
     "data": {
       "value": "test"
     }

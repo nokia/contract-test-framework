@@ -8,5 +8,5 @@ import os
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
-def test_grpc_generation(grpc_contract_generator,):
+def test_grpc_generation(grpc_contract_generator):
     grpc_contract_generator.generate_grpc_contracts()
