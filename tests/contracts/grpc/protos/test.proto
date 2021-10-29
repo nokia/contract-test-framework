@@ -1,0 +1,31 @@
+// version of protocol buffer used
+syntax = "proto3";
+
+// package name for the buffer will be used later
+package test;
+
+// service which can be executed
+service HelloWorld
+{
+  // function which can be called
+  rpc Send (HelloRequest) returns (HelloResponse);
+}
+
+// argument
+message HelloRequest {
+  // data type and position of data
+  string name = 1;
+}
+
+message Person
+{
+  string name = 1;
+  int64 age = 2;
+}
+
+// return value
+message HelloResponse {
+  // data type and position of data
+  string message = 1;
+  repeated Person personsSayingHello = 2;
+}

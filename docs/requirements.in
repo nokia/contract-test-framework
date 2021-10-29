@@ -2,6 +2,9 @@ file:.#egg=fellowship
 Jinja2
 attrs
 genson
+grpc-requests
+grpcio
+grpcio-tools
 jsonschema
 PyYAML
 rfc3987

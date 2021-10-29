@@ -1,7 +1,7 @@
 {
   "title": "Core schema meta-schema",
-  "$schema": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/rest_schema.json",
-  "$id": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/rest_schema.json",
+  "$schema": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/grpc_schema.json",
+  "$id": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/grpc_schema.json",
   "definitions": {
     "schemaArray": {
       "type": "array",
@@ -153,24 +153,33 @@
     },
     "contract_type": {
       "type": "string",
-      "const": "rest"
+      "const": "grpc"
     },
     "request": {
       "type": "object",
-      "required": ["url", "method"],
-      "header": {
-        "type": "object"
-      },
-      "data": {
-        "type": "object"
-      },
-      "url": {
+      "required": ["host", "port", "method", "endpoint", "function"],
+      "host": {
         "type": "string",
         "format": "uri"
       },
+      "port": {
+        "$ref": "#/definitions/nonNegativeInteger"
+      },
       "method": {
         "type": "string",
-        "enum": ["PATCH", "POST", "DELETE", "GET", "PUT"]
+        "enum": ["stub", "reflection"]
+      },
+      "proto_file": {
+        "type": "string"
+      },
+      "package": {
+        "type": "string"
+      },
+      "endpoint": {
+        "type": "string"
+      },
+      "function":{
+        "type": "string"
       }
     },
     "format": { "type": "string" },

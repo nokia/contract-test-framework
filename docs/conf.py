@@ -45,7 +45,6 @@ templates_path = []
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -61,5 +60,5 @@ html_static_path = []
 # -- Options for sphinxcontrib-spelling -----------------------------------
 spelling_word_list_filename = ["spelling_wordlist.txt"]
 
-
 set_type_checking_flag = True
+typehints_fully_qualified = True

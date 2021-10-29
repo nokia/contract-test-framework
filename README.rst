@@ -5,11 +5,15 @@ contract-test-framework
 
 
 ``contract-test-framework`` contains an implementation of contract testing in
-Python. Under the package name fellowship
+Python with support for REST and gRPC. Under the package name fellowship
 
-How to use from console:
 
-If you want to validate an REST API, run Fellowship in validate mode.
+How to use from console
+-----------------------
+
+REST
+____
+If you want to validate a REST API, run Fellowship in validate mode.
 If your contracts follow the Jinja2 syntax, make sure that you give the path to
 config.yaml in environment variable ``contract_test_config``.
 You can see examples of contracts and config at
@@ -54,12 +58,26 @@ manually.
     $ fellowship generate sample.json '{"url": "/test", "method": "GET"}' \
       '{"json": "expected_response"}'
 
+gRPC
+____
+
+For gRPC validation, run Fellowship in validate gRPC mode. It takes the same
+syntax as validate for REST. But make sure that you only have one type of
+contracts in the directory that you validate.
+
+To generate gRPC contracts you run Fellowship in generate_grpc mode. It takes
+the output directory path as first argument and the proto file to use as a basis
+for generation as second argument. It will generate contracts for all services
+and all their functions. The contracts will be output to directory given in the
+path argument.
+
+
 Features
 --------
 
-REST endpoint contract testing and contract rendering.
+gRPC and REST endpoint contract testing and contract rendering.
 
-Future development plans includes to support gRPC and message-based communication
+Future development plans includes to support message-based communication
 
 Installation
 ------------

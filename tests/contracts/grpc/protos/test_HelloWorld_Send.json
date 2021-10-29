@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "contract_type": "grpc",
+    "request": {
+        "package": "test",
+        "endpoint": "HelloWorld",
+        "function": "Send",
+        "proto_file": "protos/test.proto",
+        "host": "{{ config.host }}",
+        "port": "{{ config.port }}",
+        "method": "{{ config.method }}",
+        "data": "PLEASE FILL REQUEST AS A JSON HERE!"
+    },
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "personsSayingHello": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "age",
+                    "name"
+                ]
+            }
+        }
+    },
+    "required": [
+        "message",
+        "personsSayingHello"
+    ]
+}
