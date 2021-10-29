@@ -13,10 +13,29 @@
       "value": "test"
     }
   },
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "personsSayingHello": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "age",
+                "name"
+            ]
+        }
+    },
+    "required": [
+        "message",
+        "personsSayingHello"
+    ]
 }

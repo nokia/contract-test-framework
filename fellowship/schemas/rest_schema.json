@@ -151,6 +151,10 @@
         }
       ]
     },
+    "contract_type": {
+      "type": "string",
+      "const": "rest"
+    },
     "request": {
       "type": "object",
       "required": ["url", "method"],

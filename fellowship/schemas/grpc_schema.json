@@ -1,7 +1,7 @@
 {
   "title": "Core schema meta-schema",
-  "$schema": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/rest_schema.json",
-  "$id": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/rest_schema.json",
+  "$schema": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/grpc_schema.json",
+  "$id": "https://github.com/nokia/contract-test-framework/blob/main/fellowship/schemas/grpc_schema.json",
   "definitions": {
     "schemaArray": {
       "type": "array",
@@ -153,7 +153,7 @@
     },
     "contract_type": {
       "type": "string",
-      "enum": ["rest", "grpc"]
+      "const": "grpc"
     },
     "request": {
       "type": "object",

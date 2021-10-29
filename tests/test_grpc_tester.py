@@ -9,7 +9,11 @@ def test_contracts(grpc_contract_tester,
                    caplog,
                    mocker):
     caplog.set_level(logging.DEBUG)
-    json_response = {'message': "Hello World!"}
+    json_response = {"message": "Hello World!",
+                     "personsSayingHello": {
+                         "age": 64,
+                         "name": "Bob"
+                     }}
     mocker.patch.object(grpc_contract_tester,
                         "_make_request",
                         return_value=json_response)

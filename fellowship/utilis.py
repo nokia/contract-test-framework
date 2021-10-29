@@ -5,10 +5,14 @@
 import os
 import json
 import sys
-import yaml
+from typing import Union, TYPE_CHECKING
 
+import yaml
 from jsonschema import validate
 from grpc import services
+
+if TYPE_CHECKING:
+    from google.protobuf import descriptor
 
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -56,16 +60,15 @@ def get_type_of_contract(contract_dict: dict) -> str:
         return "rest"
 
 
-def load_config():
+def load_config() -> dict:
     """Loads the configuration dictionary that is used to fill contracts
 
     Function loads the config yaml, given at the path of environment variable
     contract_test_config, if this variable is not present. It will load default config
-    from configs/rest_config.yaml
+    from configs/rest_config.yaml. Yaml should always be structured like a dictionary
 
     Returns:
         dict: configuration dict
-
     """
     try:
         config_path = os.environ['contract_test_config']
@@ -76,47 +79,46 @@ def load_config():
         return read_yaml(config_path)
 
 
-def read_yaml(path: str) -> dict:
+def read_yaml(path: str) -> Union[dict, list]:
     """Loads yaml at given path
 
     Args:
         path (str): path to yaml file
 
     Returns:
-        dict: dict loaded from yaml
-
+        Union[dict, list]: dictionary or list loaded from yaml depending on the yaml
     """
     with open(path, encoding="UTF-8") as yaml_file:
         return yaml.safe_load(yaml_file)
 
 
-def get_grpc_service_descriptor(proto_file: str) -> object:
-    """Compiles ard parses proto file to find service descriptor
+def get_grpc_service_descriptor(proto_file: str) -> 'descriptor':
+    """Compiles and parses proto file to find service descriptor
 
-    Function also need to add the directory of the proto file to sys path otherwise
+    Function also needs to add the directory of the proto file to sys path otherwise
     import of the compiled grpc module will fail.
 
     Args:
         proto_file (str): path to proto_file
 
     Returns:
-        object: A grpc service descriptor
+       The grpc descriptor class from the proto file
     """
     path_for_proto_import = os.path.dirname(os.path.abspath(proto_file))
     sys.path.append(path_for_proto_import)
-    grpc_services = services("test.proto")
+    grpc_services = services(os.path.basename(proto_file))
     descriptor_name = get_descriptor_name(proto_file)
     return getattr(grpc_services, descriptor_name)
 
 
 def get_descriptor_name(proto_file: str) -> str:
-    """Returns the name of the grpc descriptor based on protocol buffer file
+    """Returns the name of the grpc _descriptor based on protocol buffer file
 
     Args:
         proto_file (str): path to proto_file
 
     Returns:
-        str: Name of the descriptor service
+        str: Name of the _descriptor service
     """
     descriptor_name = os.path.basename(proto_file).split(".")[0]
     descriptor_name += "__pb2"

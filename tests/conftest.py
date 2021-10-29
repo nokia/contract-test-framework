@@ -23,9 +23,9 @@ def grpc_contract_tester():
 
 
 @pytest.fixture
-def grpc_contract_generator():
+def grpc_contract_generator(tmpdir):
     proto_file = os.path.join(CURRENT_DIR, "contracts", "grpc", "protos", "test.proto")
-    return GrpcGenerator(proto_file)
+    return GrpcGenerator(proto_file, tmpdir)
 
 
 @pytest.fixture

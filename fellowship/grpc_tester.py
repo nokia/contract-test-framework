@@ -8,24 +8,28 @@ from grpc_requests import Client
 from grpc_requests import StubClient
 
 from .endpoint_tester import EndpointTester
-from .utilis import get_descriptor_name
+from .utilis import get_grpc_service_descriptor
 
 
 class GrpcTester(EndpointTester):
-    """Validates Rest endpoints based on contracts
+    """Validates gRPC endpoints based on contracts. Inherits EndpointTester
+
+    Supports two different gRPC communication methods reflection and stub. In the stub
+    method, the user must provide the corresponding proto so Fellowship can generate the
+    stub for requests. If the gRPC server support reflection, you do not need the proto
+    file, since Fellowship can directly request the endpoints returned by the reflection
+    endpoint.
+
     Attributes:
-        contract_dir (str): Path to directory of contracts to validate
-        contract_renderer (object): Contract render module used to fill the Jinja2
-            template of the contracts.
+        grpc_address (str): The address that the request targets. Format: ip:port
     """
-    _requests_arg_names = ['host', 'endpoint', 'port', 'function', 'package']
 
     def __init__(self, contract_dir: str):
         super().__init__(contract_dir)
         self.grpc_address = None
 
     def _make_request(self, contract_json):
-        request_kwargs = self._construct_request_kwargs(contract_json)
+        request_kwargs = contract_json["request"]
         self.grpc_address = request_kwargs['host'] + ":" + request_kwargs['port']
         if contract_json['request']['method'] == "reflection":
             result = self._reflection_request(request_kwargs)
@@ -45,17 +49,17 @@ class GrpcTester(EndpointTester):
         package = request_kwargs["package"]
         service = package + "." + request_kwargs["endpoint"]
         proto_path = self._start_proto_path_from_contract(request_kwargs["proto_file"])
-        service_descriptor = get_descriptor_name(proto_path)
-        grpc_endpoint = service_descriptor.services_by_name[
+        service_descriptor = get_grpc_service_descriptor(proto_path)
+        grpc_endpoint = service_descriptor.DESCRIPTOR.services_by_name[
             request_kwargs["endpoint"]
         ]
         client = StubClient.get_by_endpoint(
             self.grpc_address,
             service_descriptors=[grpc_endpoint, ]
         )
-        sub = client.service(service)
-        grpc_function = getattr(sub, request_kwargs["function"])
-        result = grpc_function(request_kwargs["request_data"])
+        service_client = client.service(service)
+        grpc_function = getattr(service_client, request_kwargs["function"])
+        result = grpc_function(request_kwargs["data"])
         return result
 
     def _start_proto_path_from_contract(self, proto_path):

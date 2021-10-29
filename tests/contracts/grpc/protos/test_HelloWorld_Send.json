@@ -5,7 +5,7 @@
         "package": "test",
         "endpoint": "HelloWorld",
         "function": "Send",
-        "proto_file": "/home/rnyman/github/contract-test-framework/tests/contracts/grpc/protos/test.proto",
+        "proto_file": "protos/test.proto",
         "host": "{{ config.host }}",
         "port": "{{ config.port }}",
         "method": "{{ config.method }}",
@@ -17,19 +17,22 @@
             "type": "string"
         },
         "personsSayingHello": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "number"
+                    }
                 },
-                "age": {
-                    "type": "number"
-                }
-            },
-            "required": [
-                "age",
-                "name"
-            ]
+                "required": [
+                    "age",
+                    "name"
+                ]
+            }
         }
     },
     "required": [
