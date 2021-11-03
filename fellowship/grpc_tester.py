@@ -6,6 +6,7 @@ import os
 
 from grpc_requests import Client
 from grpc_requests import StubClient
+from grpc_requests.client import get_by_endpoint, reset_cached_client
 
 from .endpoint_tester import EndpointTester
 from .utilis import get_grpc_service_descriptor
@@ -26,19 +27,30 @@ class GrpcTester(EndpointTester):
 
     def __init__(self, contract_dir: str):
         super().__init__(contract_dir)
-        self.grpc_address = None
+        self._grpc_address = None
+        self._service = None
 
     def _make_request(self, contract_json):
         request_kwargs = contract_json["request"]
-        self.grpc_address = request_kwargs['host'] + ":" + request_kwargs['port']
+        self._construct_common_request_args(request_kwargs)
+        self._check_if_service_in_cache()
         if contract_json['request']['method'] == "reflection":
             result = self._reflection_request(request_kwargs)
         else:
             result = self._stub_request(request_kwargs)
         return result
 
+    def _construct_common_request_args(self, request_kwargs):
+        self._grpc_address = request_kwargs['host'] + ":" + request_kwargs['port']
+        self._service = request_kwargs["package"] + "." + request_kwargs["endpoint"]
+
+    def _check_if_service_in_cache(self):
+        client = get_by_endpoint(self._grpc_address)
+        if self._service not in client.service_names:
+            reset_cached_client()
+
     def _reflection_request(self, request_kwargs):
-        client = Client.get_by_endpoint(self.grpc_address)
+        client = Client.get_by_endpoint(self._grpc_address)
         service = request_kwargs["package"] + "." + request_kwargs["endpoint"]
         result = client.request(service,
                                 request_kwargs["function"],
@@ -46,18 +58,16 @@ class GrpcTester(EndpointTester):
         return result
 
     def _stub_request(self, request_kwargs):
-        package = request_kwargs["package"]
-        service = package + "." + request_kwargs["endpoint"]
         proto_path = self._start_proto_path_from_contract(request_kwargs["proto_file"])
         service_descriptor = get_grpc_service_descriptor(proto_path)
         grpc_endpoint = service_descriptor.DESCRIPTOR.services_by_name[
             request_kwargs["endpoint"]
         ]
         client = StubClient.get_by_endpoint(
-            self.grpc_address,
+            self._grpc_address,
             service_descriptors=[grpc_endpoint, ]
         )
-        service_client = client.service(service)
+        service_client = client.service(self._service)
         grpc_function = getattr(service_client, request_kwargs["function"])
         result = grpc_function(request_kwargs["data"])
         return result
