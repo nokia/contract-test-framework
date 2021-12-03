@@ -22,10 +22,14 @@ def grpc_contract_tester():
     return GrpcTester(contract_dir)
 
 
+@pytest.fixture(name="protobuf_path")
+def test_protobuf_path():
+    return os.path.join(CURRENT_DIR, "contracts", "grpc", "protos", "test.proto")
+
+
 @pytest.fixture
-def grpc_contract_generator(tmpdir):
-    proto_file = os.path.join(CURRENT_DIR, "contracts", "grpc", "protos", "test.proto")
-    return GrpcGenerator(proto_file, tmpdir)
+def grpc_contract_generator(protobuf_path, tmpdir):
+    return GrpcGenerator(protobuf_path, tmpdir)
 
 
 @pytest.fixture
