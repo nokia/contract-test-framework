@@ -18,6 +18,10 @@ if TYPE_CHECKING:
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
+class GrpcGenerationError(Exception):
+    pass
+
+
 def load_custom_schema(schema_file: str) -> dict:
     """Loads custom meta schema from the schemas directory
 
@@ -107,19 +111,21 @@ def get_grpc_service_descriptor(proto_file: str) -> 'descriptor':
     path_for_proto_import = os.path.dirname(os.path.abspath(proto_file))
     sys.path.append(path_for_proto_import)
     grpc_services = services(os.path.basename(proto_file))
-    descriptor_name = get_descriptor_name(proto_file)
+    descriptor_name = get_service_descriptor_name(grpc_services)
     return getattr(grpc_services, descriptor_name)
 
 
-def get_descriptor_name(proto_file: str) -> str:
-    """Returns the name of the grpc _descriptor based on protocol buffer file
+def get_service_descriptor_name(grpc_services: 'descriptor') -> str:
+    """Returns the name of the grpc service descriptor based on grpc descriptor
 
     Args:
-        proto_file (str): path to proto_file
+        grpc_services ('descrptor'): grpc descriptor object
 
     Returns:
-        str: Name of the _descriptor service
+        str: Name of the descriptor service
     """
-    descriptor_name = os.path.basename(proto_file).split(".")[0]
-    descriptor_name += "__pb2"
+    descriptor_name = next(prop for prop in dir(grpc_services) if "__pb2" in prop)
+    if descriptor_name is None:
+        raise GrpcGenerationError(f"Could not find DescriptorProto from the generated "
+                                  f"code. Searched for {descriptor_name}")
     return descriptor_name
